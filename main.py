@@ -2,9 +2,9 @@ import os
 import knocker
 import time
 
-def main(folder=""):
+def main():
     a = knocker.Knocker(login=open("login","r").read(), password=open("password",'r').read(), tokenPath='token', groupId=int(open('groupid', 'r').read()))
-    targetFolder = folder+ '\\'
+    targetFolder = open('folder','r').read() + '\\'
     while True:
         for osFile in os.listdir(targetFolder):
             a.PostFile(dicId=a.UploadFile(file=targetFolder + osFile), message=open('message', 'r').read())
@@ -12,6 +12,6 @@ def main(folder=""):
             time.sleep(900)
         pass
 try:
-    main('folder')
+    main()
 except Exception as e:
     print(str(e))

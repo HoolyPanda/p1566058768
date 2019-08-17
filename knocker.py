@@ -15,7 +15,7 @@ class Knocker:
         self.gId = groupId
         
     def SendMsg(self, messageText : str, peerId):
-        self.bot.method("messages.send",{"peer_id": 160500068, "random_id" : random.randint(1, 1000),"message": messageText})
+        self.bot.method("messages.send",{"peer_id": self.userId, "random_id" : random.randint(1, 1000),"message": messageText})
 
     def UploadFile(self, file):
         fileToUpload = open(file, 'rb')
