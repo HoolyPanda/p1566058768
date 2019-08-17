@@ -3,11 +3,11 @@ import knocker
 import time
 
 def main(folder=""):
-    a = knocker.Knocker(login=open("./login","r").read(), password=open("./password",'r').read(), tokenPath='./token', groupId=int(open('./groupid', 'r').read()))
+    a = knocker.Knocker(login=open("login","r").read(), password=open("password",'r').read(), tokenPath='token', groupId=int(open('groupid', 'r').read()))
     targetFolder = folder+ '\\'
     while True:
         for osFile in os.listdir(targetFolder):
-            a.PostFile(dicId=a.UploadFile(file=targetFolder + osFile), message="test1")
+            a.PostFile(dicId=a.UploadFile(file=targetFolder + osFile), message=open('message', 'r').read())
             os.remove(targetFolder + osFile)
             time.sleep(900)
         pass
