@@ -4,13 +4,13 @@ import requests
 import os
 
 class Knocker:
-    def __init__(self, login, password, tokenPath, groupId):
+    def __init__(self, login, password, token, groupId):
         self.client = vk_api.VkApi(login, password)
         if self.client.auth(token_only=True):
             print("succ")
         self.userId = int(self.client.token['user_id'])
 
-        self.bot = vk_api.VkApi(token=open(tokenPath, "r").readline())
+        self.bot = vk_api.VkApi(token=token)
         self.bot._auth_token()
         self.gId = groupId
         

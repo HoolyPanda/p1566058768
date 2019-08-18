@@ -1,16 +1,22 @@
 import os
 import knocker
 import time
+import json
 
 def main():
-    a = knocker.Knocker(login=open("login","r").read(), password=open("password",'r').read(), tokenPath='token', groupId=int(open('groupid', 'r').read()))
-    targetFolder = open('folder','r').read() + '\\'
+    credentials = json.load(open("credentials.json", 'r'))
+    a = knocker.Knocker(login=credentials['login'], password=credentials['password'], token=credentials['token'], groupId=int(credentials['groupid']))
+    targetFolder = credentials['targetfolder']
+    uploadFlag = False
     while True:
         for osFile in os.listdir(targetFolder):
-            a.PostFile(dicId=a.UploadFile(file=targetFolder + osFile), message=open('message', 'r').read())
-            os.remove(targetFolder + osFile)
-            time.sleep(900)
+            a.PostFile(dicId=a.UploadFile(file=targetFolder + "\\" + osFile), message=open('message', 'r').read())
+            os.remove(targetFolder + '\\' + osFile)
+            time.sleep(int(credentials['timeout']))
+            uploadFlag = True
         pass
+        if not uploadFlag: 
+            time.sleep(int(credentials['timeout']))
 try:
     main()
 except Exception as e:
