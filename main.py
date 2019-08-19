@@ -10,7 +10,8 @@ def main():
     uploadFlag = False
     while True:
         for osFile in os.listdir(targetFolder):
-            a.PostFile(dicId=a.UploadFile(file=targetFolder + "\\" + osFile), message=open('message', 'r').read())
+            # m = open('message', 'r', encoding='ansi').read()
+            a.PostFile(dicId=a.UploadFile(file=targetFolder + "\\" + osFile), message=open('message.txt', 'r', encoding='ansi').read())
             os.remove(targetFolder + '\\' + osFile)
             time.sleep(int(credentials['timeout']))
             uploadFlag = True
