@@ -22,8 +22,8 @@ class Knocker:
         uploadUrl = self.client.method("docs.getWallUploadServer", {"group_id": self.gId})['upload_url']
         request = requests.post(uploadUrl, files = {'file':fileToUpload})
         fileToUpload.close()
-        a = request.json()['file']
-        return self.client.method('docs.save', {'file': a, 'v':5.101})['doc']['id']
+        uploadedFile = request.json()['file']
+        return self.client.method('docs.save', {'file': uploadedFile, 'v':5.101})['doc']['id']
 
     def PostFile(self, dicId, message, fromGroup = True, signed = '0'):
         a = (str('doc' + str(0 - self.gId) + '_' + str(dicId)))
