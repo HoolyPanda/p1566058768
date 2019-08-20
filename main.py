@@ -4,7 +4,7 @@ import time
 import json
 
 def main():
-    credentials = json.load(open("credentials.json", 'r'))
+    credentials = json.load(open("credentials.json", 'r', encoding= 'utf-8'))
     a = knocker.Knocker(login=credentials['login'], password=credentials['password'], token=credentials['token'], groupId=int(credentials['groupid']))
     targetFolder = credentials['targetfolder']
     uploadFlag = False
