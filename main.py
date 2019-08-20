@@ -18,7 +18,8 @@ def main():
         pass
         if not uploadFlag: 
             time.sleep(int(credentials['timeout']))
+main()
 try:
-    main()
+    pass
 except Exception as e:
     print(str(e))
